@@ -47,8 +47,7 @@ pipeline {
                 script {
                     withCredentials([file(credentialsId: 'kuberntes-id', variable: 'KUBECONFIG')]) {
                         echo "Updating the docker image: ramya0602/surveyform:${env.IMAGE_TAG}"
-                        def deploymentExists = sh(script: "kubectl get deployment surveyform-deployment -n default --ignore-not-found", returnStatus: true) == 0
-
+                        def deploymentExists = sh(script: "kubectl get deployment surveyform-deployment -n default --ignore-not-found", returnStdout: true).trim()
                         if (deploymentExists) {
                              echo "Deployment exists. Updating the image."
                              sh """
