@@ -47,19 +47,9 @@ pipeline {
                 script {
                     withCredentials([file(credentialsId: 'kuberntes-id', variable: 'KUBECONFIG')]) {
                         echo "Updating the docker image: ramya0602/surveyform:${env.IMAGE_TAG}"
-                        def deploymentExists = sh(script: "kubectl get deployment surveyform-deployment -n default --ignore-not-found", returnStdout: true).trim()
-                        if (deploymentExists) {
-                            echo "Deployment exists. Updating the image."
-                            sh """
-                                kubectl set image deployment/surveyform-deployment form-container=ramya0602/surveyform:${env.IMAGE_TAG} -n default --record
-                                kubectl rollout status deployment/surveyform-deployment -n default
-                            """
-                        } else {
-                            echo "Deployment doesn't exist. Creating a new deployment."
-                            sh """
-                                sed "s|\${IMAGE_TAG}|${env.IMAGE_TAG}|g" deployment.yaml | kubectl apply -f -
-                            """
-                        }
+                        kubectl apply -f deployment.yaml
+                        kubectl set image deployment/surveyform-deployment spring-survey=ramya0602/spring_surveyform:${env.IMAGE_TAG}
+                        kubectl rollout status deployment/surveyform-deployment -n default
                     }
                 }
             }
