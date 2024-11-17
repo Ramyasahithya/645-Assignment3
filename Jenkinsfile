@@ -44,8 +44,8 @@ pipeline {
         stage('Cleanup') {
             steps {
                  script {
-                      sh 'docker rmi ramya0602/spring_surveyform:${env.IMAGE_TAG}'
-                      sh 'docker image prune -f'
+                     sh 'docker rmi ramya0602/spring_surveyform:$IMAGE_TAG'
+                     sh 'docker image prune -f'
                  }
             }
         }
