@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: student-survey-deployment
+  labels:
+    app: surveydata
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: surveydata
+  template:
+    metadata:
+      labels:
+        app: surveydata
+    spec:
+      containers:
+        - name: surveydata-container
+          image: ramya0602/spring_surveyform:v3.0
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: dockerkey
