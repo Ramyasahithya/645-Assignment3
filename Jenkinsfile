@@ -58,7 +58,6 @@ pipeline {
                             echo "Deployment doesn't exist. Creating a new deployment."
                             sh """
                                 sed "s|\${IMAGE_TAG}|${env.IMAGE_TAG}|g" deployment.yaml | kubectl apply -f -
-                                kubectl rollout status deployment/surveyform-deployment -n default
                             """
                         }
                     }
