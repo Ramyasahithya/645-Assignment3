@@ -16,7 +16,7 @@ pipeline {
             steps {
                  script {
                      echo 'Building the Maven project...'
-                     sh 'mvn ${MAVEN_GOALS}' // This will execute 'mvn clean package'
+                     sh 'mvn ${MAVEN_GOALS}'
                  }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'docker-pass', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PSW')]) {
                         sh 'echo $DOCKER_PSW | docker login -u $DOCKER_USER --password-stdin'
                     }
-                    image = docker.build("ramya0602/surveyform:${env.IMAGE_TAG}")
+                    image = docker.build("ramya0602/spring_surveyform:${env.IMAGE_TAG}")
                 }
             }
         }
@@ -49,11 +49,10 @@ pipeline {
                         echo "Updating the docker image: ramya0602/surveyform:${env.IMAGE_TAG}"
                          sh """
                             kubectl apply -f deployment.yaml
-                            kubectl set image deployment/student-survey-deployment surveydata-container=ramya0602/form:${env.IMAGE_TAG} -n default --record
+                            kubectl set image deployment/student-survey-deployment surveydata-container=ramya0602/spring_surveyform:${env.IMAGE_TAG} -n default --record
                             kubectl rollout status deployment/student-survey-deployment -n default
                          """
                          sh 'kubectl apply -f service.yaml'
-
                     }
                 }
             }
