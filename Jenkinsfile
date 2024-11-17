@@ -2,12 +2,22 @@ pipeline {
     agent any
     environment {
         IMAGE_TAG = "${env.BUILD_ID}"
+        MAVEN_GOALS="clean package"
     }
 
     stages {
         stage('Clone Repository') {
             steps {
                 git branch: 'master', url: 'https://github.com/Ramyasahithya/645-Assignment3'
+            }
+        }
+
+        stage('Build Maven Project') {
+            steps {
+                 script {
+                     echo 'Building the Maven project...'
+                     sh 'mvn ${MAVEN_GOALS}' // This will execute 'mvn clean package'
+                 }
             }
         }
 
