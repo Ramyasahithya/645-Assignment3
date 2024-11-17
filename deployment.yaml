@@ -5,7 +5,7 @@ metadata:
   labels:
     app: surveydata
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: surveydata
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: surveydata-container
-          image: ramya0602/spring_surveyform:v3.0
+          image: ramya0602/spring_surveyform:${IMAGE_TAG}
           ports:
             - containerPort: 80
       imagePullSecrets:
