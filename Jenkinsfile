@@ -41,6 +41,14 @@ pipeline {
                 }
             }
         }
+        stage('Cleanup') {
+            steps {
+                 script {
+                      sh 'docker rmi ramya0602/spring_surveyform:${env.IMAGE_TAG}'
+                      sh 'docker image prune -f'
+                 }
+            }
+        }
 
         stage('Update Deployment YAML and Deploy') {
             steps {
