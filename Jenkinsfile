@@ -47,9 +47,13 @@ pipeline {
                 script {
                     withCredentials([file(credentialsId: 'kuberntes-id', variable: 'KUBECONFIG')]) {
                         echo "Updating the docker image: ramya0602/surveyform:${env.IMAGE_TAG}"
-                        kubectl apply -f deployment.yaml
-                        kubectl set image deployment/surveyform-deployment spring-survey=ramya0602/spring_surveyform:${env.IMAGE_TAG}
-                        kubectl rollout status deployment/surveyform-deployment -n default
+                         sh """
+                            kubectl apply -f deployment.yaml
+                            kubectl set image deployment/student-survey-deployment surveydata-container=ramya0602/form:${env.IMAGE_TAG} -n default --record
+                            kubectl rollout status deployment/student-survey-deployment -n default
+                         """
+                         sh 'kubectl apply -f service.yaml'
+
                     }
                 }
             }
