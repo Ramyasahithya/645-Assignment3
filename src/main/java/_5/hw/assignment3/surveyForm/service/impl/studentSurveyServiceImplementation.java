@@ -1,3 +1,7 @@
+/*
+This class provide implementation for studentSurveyService interface by hadling business logic for creating, updating, retrieving and deleting student survey form details.
+*/
+
 package _5.hw.assignment3.surveyForm.service.impl;
 
 import _5.hw.assignment3.surveyForm.model.studentSurveyData;
