@@ -1,3 +1,8 @@
+/*
+ This controller file manage HTTP requests for survey form data.
+ It provides endpoints to create, update, retrieve and delete survey form data.
+ */
+
 package _5.hw.assignment3.surveyForm.controller;
 
 import _5.hw.assignment3.surveyForm.model.studentSurveyData;
