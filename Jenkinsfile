@@ -1,3 +1,10 @@
+// Ramyasahithya Magani - G01425752
+// Arsitha Sathu - G01445215
+// Athiksha Venkannagari - G01461169
+// Sreshta Kosaraju - G01460468
+
+// Jenkinsfile defines a CI/CD pipeline for building, containerizing, and deploying the Survey form application.
+
 pipeline {
     agent any
     environment {
