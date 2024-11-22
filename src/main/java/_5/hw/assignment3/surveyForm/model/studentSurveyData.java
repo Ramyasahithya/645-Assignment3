@@ -1,3 +1,7 @@
+/*
+This class represents the data model for student survey form responses, By mapping surveyData table in the database.
+*/
+
 package _5.hw.assignment3.surveyForm.model;
 import jakarta.persistence.*;
 
