@@ -6,11 +6,14 @@
 */
 
 /*
-This class represents the data model for student survey form responses, By mapping surveyData table in the database.
+This class represents the data model for student survey form responses,
+By mapping surveyData table in the database.
 */
 
 package _5.hw.assignment3.surveyForm.model;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -23,22 +26,31 @@ public class studentSurveyData
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name="first_name",nullable = false)
+    @NotBlank(message = "First name must not be blank")
     private String firstName;
     @Column(name="last_name",nullable = false)
+    @NotBlank(message = "Last name must not be blank")
     private String lastName;
     @Column(name="street_address",nullable = false)
+    @NotBlank(message = "Street Address must not be blank")
     private String streetAddress;
     @Column(name="city",nullable = false)
+    @NotBlank(message = "City must not be blank")
     private String city;
     @Column(name="state",nullable = false)
+    @NotBlank(message = "State must not be blank")
     private String state;
     @Column(name="zip",nullable = false)
+    @NotBlank(message = "zip must not be blank")
     private String zip;
     @Column(name="telephone",nullable = false)
+    @NotBlank(message = "Telephone must not be blank")
     private String telephone;
     @Column(name="email",nullable = false)
+    @NotBlank(message = "Email must not be blank")
     private String email;
     @Column(name="surveyDate",nullable = false)
+    @NotNull(message = "Survey date must not be null")
     private Date surveyDate;
     @Enumerated(EnumType.STRING)
     @Column(name="campus_interest",nullable = false)

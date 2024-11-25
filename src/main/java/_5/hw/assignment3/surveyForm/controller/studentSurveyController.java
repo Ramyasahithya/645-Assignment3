@@ -14,6 +14,7 @@ package _5.hw.assignment3.surveyForm.controller;
 
 import _5.hw.assignment3.surveyForm.model.studentSurveyData;
 import _5.hw.assignment3.surveyForm.service.studentSurveyService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -36,7 +37,7 @@ public class studentSurveyController {
     private static final Logger logger = LoggerFactory.getLogger(studentSurveyController.class);
 
     @PostMapping
-    public ResponseEntity<studentSurveyData> saveStudentSurveyData(@RequestBody studentSurveyData studentSurvey) {
+    public ResponseEntity<studentSurveyData> saveStudentSurveyData(@Valid @RequestBody studentSurveyData studentSurvey) {
         logger.info("Received survey data: {}", studentSurvey.toString());
         return new ResponseEntity<studentSurveyData>(studentService.saveStudentSurveyData(studentSurvey), HttpStatus.CREATED);
     }
@@ -54,7 +55,7 @@ public class studentSurveyController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<?> updateStudentSurveyDataById(@RequestBody studentSurveyData studentSurvey, @PathVariable("id") long studentId) {
+    public ResponseEntity<?> updateStudentSurveyDataById(@Valid  @RequestBody studentSurveyData studentSurvey, @PathVariable("id") long studentId) {
         logger.info("Received survey data: {}", studentSurvey.toString());
         return studentService.updateStudentSurveyDataById(studentSurvey, studentId);
     }
