@@ -60,6 +60,7 @@ public class studentSurveyController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteStudentSurveyData(@PathVariable("id") long studentId) {
+        logger.info("Received request to delete survey data for id: {}", studentId);
         try {
             boolean isDeleted = studentService.deleteStudentSurveyData(studentId);
             if (isDeleted) {
