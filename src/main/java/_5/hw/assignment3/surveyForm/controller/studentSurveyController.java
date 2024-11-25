@@ -57,6 +57,7 @@ public class studentSurveyController {
     @PutMapping("{id}")
     public ResponseEntity<?> updateStudentSurveyDataById(@Valid  @RequestBody studentSurveyData studentSurvey, @PathVariable("id") long studentId) {
         logger.info("Received survey data: {}", studentSurvey.toString());
+        logger.info("Received update for the student Id:{}",studentId);
         return studentService.updateStudentSurveyDataById(studentSurvey, studentId);
     }
 
