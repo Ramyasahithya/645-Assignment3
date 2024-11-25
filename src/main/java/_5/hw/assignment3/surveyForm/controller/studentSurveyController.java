@@ -49,6 +49,7 @@ public class studentSurveyController {
 
     @GetMapping("{id}")
     public ResponseEntity<studentSurveyData> getStudentSurveyDataById(@PathVariable("id") long studentId) {
+        logger.info("Received request to get survey data for id: {}", studentId);
         return new ResponseEntity<studentSurveyData>(studentService.getStudentSurveyDataById(studentId), HttpStatus.OK);
     }
 
