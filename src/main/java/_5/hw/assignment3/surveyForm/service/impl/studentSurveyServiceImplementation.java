@@ -21,7 +21,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 @Service
 public class studentSurveyServiceImplementation implements studentSurveyService {
@@ -61,6 +60,9 @@ public class studentSurveyServiceImplementation implements studentSurveyService 
         Optional.ofNullable(student.getCampusFeatures()).ifPresent(existingSurvey::setCampusFeatures);
         Optional.ofNullable(student.getCampusInterest()).ifPresent(existingSurvey::setCampusInterest);
         Optional.ofNullable(student.getUniversityRecommendation()).ifPresent(existingSurvey::setUniversityRecommendation);
+        Optional.ofNullable(student.getSurveyDate()).ifPresent(existingSurvey::setSurveyDate);
+        Optional.ofNullable(student.getAdditionalComments()).ifPresent(existingSurvey::setAdditionalComments);
+
         studentRepository.save(existingSurvey);
 
         return new ResponseEntity<>(existingSurvey,HttpStatus.OK);
