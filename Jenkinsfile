@@ -31,7 +31,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'docker-pass', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PSW')]) {
+                    withCredentials([usernamePassword(credentialsId: 'docker-id', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PSW')]) {
                         sh 'echo $DOCKER_PSW | docker login -u $DOCKER_USER --password-stdin'
                     }
                     image = docker.build("ramya0602/spring_surveyform:${env.IMAGE_TAG}")
