@@ -42,7 +42,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-pass') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-id') {
                         image.push()
                     }
                 }
