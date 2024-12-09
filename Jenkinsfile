@@ -42,6 +42,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
+                    echo "pushing the docker image"
                     docker.withRegistry('https://index.docker.io/v1/', 'docker-id') {
                         image.push()
                     }
