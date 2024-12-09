@@ -26,6 +26,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/surveyData")
+@CrossOrigin(origins = "http://ec2-44-213-187-95.compute-1.amazonaws.com:30080/")
 public class studentSurveyController {
     private final studentSurveyService studentService;
 
